@@ -26,6 +26,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "scrape-youtube": "^0.2.3",
-    "ytdl-core": "^3.2.2"
+    "ytdl-core": "^3.2.2",
+    "ytdl-core-discord": "^1.2.1"
   }
 }
