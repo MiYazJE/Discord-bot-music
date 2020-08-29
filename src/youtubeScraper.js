@@ -30,7 +30,7 @@ async function getSong(query) {
 	await page.waitForSelector('#thumbnail');
 	const video = await page.evaluate(() => {
 		const title = document.querySelector('ytd-video-renderer yt-formatted-string').innerText;
-		const url = document.querySelector('#thumbnail').getAttribute('href');
+		const url = `https://www.youtube.com${document.querySelector('#thumbnail').getAttribute('href')}`;
 		const thumbnail = document.querySelector('ytd-video-renderer #img').getAttribute('src');
 		return { title, url, thumbnail };
 	});
