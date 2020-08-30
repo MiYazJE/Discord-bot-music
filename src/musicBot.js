@@ -72,13 +72,15 @@ function musicBot(client) {
 
 		const songsInfo = new Discord.MessageEmbed()
 			.setColor('#1283F0')
-			.setTitle('🎶 QUEUE 🎶'); 
+			.setTitle('🎶 QUEUE 🎶');
+			
 
 		if (channel.isPlaying) {
-			songsInfo.addFields({
-				name: '🎵 Now Playing:',
-				value: `[${channel.currentSong.title}](${channel.currentSong.url})`
-			});
+			songsInfo
+				.addFields({
+					name: '🎵 Now Playing:',
+					value: `[${channel.currentSong.title}](${channel.currentSong.url})`
+				});
 		}
 		queue.forEach((song, i) => {
 			songsInfo.addFields({
