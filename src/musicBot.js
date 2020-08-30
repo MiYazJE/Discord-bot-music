@@ -182,9 +182,8 @@ function musicBot(client) {
 			return msg.channel.send('⛔ **There is no songs to skip!**');
 		}
 		msg.channel.send(`**Skipping** ***${channel.currentSong.title}***\n\n`);
-		channel.isPlaying = false;
-		channel.currentSong = null;
 		channel.connection.dispatcher.end();
+		play(msg, channel, channel.queue.shift());
 	}
 
 	function stop(msg, channel) {
