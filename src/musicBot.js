@@ -76,7 +76,7 @@ function musicBot(client) {
 
 		if (channel.isPlaying) {
 			songsInfo.addFields({
-				name: 'Now Playing:',
+				name: '🎵 Now Playing:',
 				value: `[${channel.currentSong.title}](${channel.currentSong.url})`
 			});
 		}
@@ -98,9 +98,9 @@ function musicBot(client) {
 		}
 
 		const song = await youtubeScraper.getSong(songName);
-
 		channel.queue.push(song);
 		channels.set(msg.guild.id, channel);
+
 		msg.channel.send(`✅ *${song.title}* ***enqueued***`);
 	}
 
