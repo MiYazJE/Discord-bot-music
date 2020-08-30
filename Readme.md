@@ -16,7 +16,7 @@ npm run dev
 
 ### Invite
 
-> If you want to install it in some of your discord channels click [here](https://discord.com/oauth2/authorize?client_id=749179228125134919&scope=bot&permissions=8)
+> If you want to invite him in some of your discord channels click [here](https://discord.com/oauth2/authorize?client_id=749179228125134919&scope=bot&permissions=8)
 
 ### Features
 
