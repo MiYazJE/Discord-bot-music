@@ -183,7 +183,6 @@ function musicBot(client) {
 		}
 		msg.channel.send(`**Skipping** ***${channel.currentSong.title}***\n\n`);
 		channel.connection.dispatcher.end();
-		play(msg, channel, channel.queue.shift());
 	}
 
 	function stop(msg, channel) {
