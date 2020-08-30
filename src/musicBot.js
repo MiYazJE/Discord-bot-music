@@ -192,7 +192,7 @@ function musicBot(client) {
 		msg.channel.send('🔇 **Stopping the music...**');
 		channel.isPlaying = false;
 		channel.currentSong = null;
-		channel.queue.queue = [];
+		channel.queue = [];
 		channel.connection.dispatcher.end();
 	}
 
