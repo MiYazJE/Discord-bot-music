@@ -116,6 +116,9 @@ function musicBot(client) {
 	}
 
 	async function join(msg, channel) {
+		if (channel.connection) {
+			return msg.channel.send('⛔ **I am already in a channel voice**');
+		}
 		const voiceChannel = msg.member.voice.channel;
 		channel.voiceChannel = voiceChannel;
 		channels.set(msg.guild.id, channel);
@@ -170,7 +173,12 @@ function musicBot(client) {
 			.on('finish', () => play(msg, channel, channel.queue.shift()))
 			.on('error', (e) => console.log(e));
 		
-		msg.channel.send(`🎵 Playing ***${song.title}***\n${song.url}`);
+		msg.channel.send(new Discord.MessageEmbed()
+			.setColor('#1283F0')
+			.addFields({
+				name: '🎵 Playing:',
+				value: `[${song.title}](${song.url})`
+			}));
 		dispatcher.setVolumeLogarithmic(channel.volume / 5);
 	}
 
