@@ -77,15 +77,17 @@ function musicBot(client) {
 
 		if (channel.isPlaying) {
 			songsInfo
+				.setThumbnail(channel.currentSong.thumbnail)
 				.addFields({
 					name: '🎵 Now Playing:',
-					value: `[${channel.currentSong.title}](${channel.currentSong.url})`
+					value: `[${channel.currentSong.title}](${channel.currentSong.url}) \`${channel.currentSong.duration}\``
 				});
 		}
+
 		queue.forEach((song, i) => {
 			songsInfo.addFields({
-				name: '\u200B',
-				value: `\`${i + 1}.\` [${song.title}](${song.url})`
+				name: `\`${i + 1}.\` Requested by: **${song.requested}**`,
+				value: `[${song.title}](${song.url}) \`${song.duration}\``,
 			});
 		});
 
@@ -100,6 +102,8 @@ function musicBot(client) {
 		}
 
 		const song = await youtubeScraper.getSong(songName);
+		console.log(song);
+		song.requested = msg.member.user.tag;
 		channel.queue.push(song);
 		channels.set(msg.guild.id, channel);
 
@@ -175,10 +179,9 @@ function musicBot(client) {
 		
 		msg.channel.send(new Discord.MessageEmbed()
 			.setColor('#1283F0')
-			.addFields({
-				name: '🎵 Playing:',
-				value: `[${song.title}](${song.url})`
-			}));
+			.setThumbnail(song.thumbnail)
+			.setTitle('🎵 Now Playing:')
+			.setDescription(`[${song.title}](${song.url}) \`${song.duration}\``));
 		dispatcher.setVolumeLogarithmic(channel.volume / 5);
 	}
 
@@ -189,7 +192,7 @@ function musicBot(client) {
 		if (!channel.currentSong) {
 			return msg.channel.send('⛔ **There is no songs to skip!**');
 		}
-		msg.channel.send(`**Skipping** ***${channel.currentSong.title}***\n\n`);
+		msg.channel.send(`**Skipping** \`${channel.currentSong.title}\``);
 		channel.connection.dispatcher.end();
 	}
 
