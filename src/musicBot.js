@@ -12,6 +12,8 @@ const {
 	search,
 	commands
 } = require('./commands');
+const Discord = require('discord.js');
+const { MESSAGE_COLOR } = require('./commands/config');
 
 const INITIAL_CHANNEL = {
 	queue: [],
@@ -30,6 +32,25 @@ function musicBot(client) {
 
 	client.on('ready', () => {
 		console.log(`Logged in as ${client.user.tag}!`);
+	});
+
+	client.on('guildCreate', (guild) => {
+		guild.channels.cache.forEach(c => {
+			if (c.type === 'text' && c.permissionsFor(guild.me).has('SEND_MESSAGES')) {
+				c.send(
+					new Discord
+						.MessageEmbed()
+						.setColor(MESSAGE_COLOR)
+						.setTitle('🎵 BAILONGO BOT 🎵')
+						.setDescription(`
+							*Thanks for invite me!*
+							*To view all commands type:* \`!commands\`
+
+							**You can contribute in this proyect [github](https://github.com/MiYazJE/Discord-music-bot)**.
+						`)
+				);
+			}
+		});
 	});
 
 	client.on('message', async (msg) => {
