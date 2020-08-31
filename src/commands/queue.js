@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { MESSAGE_COLOR } = require('./config');
 
 module.exports = queue;
 
@@ -6,7 +7,7 @@ function queue(msg, channel) {
 	const { queue } = channel;
 
 	const songsInfo = new Discord.MessageEmbed()
-		.setColor('#1283F0')
+		.setColor(MESSAGE_COLOR)
 		.setTitle('🎶 QUEUE 🎶');
         
 

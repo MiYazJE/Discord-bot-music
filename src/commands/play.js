@@ -1,7 +1,9 @@
 const ytdl = require('ytdl-core');
 const Discord = require('discord.js');
+const { MESSAGE_COLOR } = require('./config');
 
 exports.default = executePlay;
+exports.play = play;
 
 function executePlay(msg, channel) {
 	if (!channel.connection) {
@@ -36,9 +38,10 @@ async function play(msg, channel, song) {
 		.on('error', (e) => console.log(e));
     
 	msg.channel.send(new Discord.MessageEmbed()
-		.setColor('#1283F0')
+		.setColor(MESSAGE_COLOR)
 		.setThumbnail(song.thumbnail)
 		.setTitle('🎵 Now Playing:')
-		.setDescription(`[${song.title}](${song.url}) \`${song.duration}\``));
+		.setDescription(`[${song.title}](${song.url}) \`${song.duration}\``)
+		.setFooter(`Requested by: ${song.requested}`));
 	dispatcher.setVolumeLogarithmic(channel.volume / 5);
 }

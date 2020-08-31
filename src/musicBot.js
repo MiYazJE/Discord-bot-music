@@ -6,7 +6,8 @@ const {
 	join,
 	play,
 	queue,
-	skip
+	skip,
+	replay
 } = require('./commands');
 
 const INITIAL_CHANNEL = {
@@ -53,6 +54,9 @@ function musicBot(client) {
 			break;
 		case 'play':
 			play(msg, channel);
+			break;
+		case 'replay':
+			replay(msg, channel);
 			break;
 		case 'skip':
 			skip(msg, channel);

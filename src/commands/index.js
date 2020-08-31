@@ -6,6 +6,7 @@ const join = require('./join');
 const play = require('./play').default;
 const queue = require('./queue');
 const skip = require('./skip');
+const replay = require('./replay');
 
 module.exports = {
 	stop,
@@ -15,5 +16,6 @@ module.exports = {
 	join,
 	play,
 	queue,
-	skip
+	skip,
+	replay
 };
