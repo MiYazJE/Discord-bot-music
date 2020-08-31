@@ -29,4 +29,7 @@ npm run dev
 | !play   | Start playing music |
 | !skip   | Skip the current song if its playing |
 | !stop   | Stop the music and remove the queue |
+| !bucle   | Toggle the bucle state |
+| !repeat   | Repeat the song that is currently playing |
+| !search   | Get a seggestions list |
 | !disconnect   | The bot leaves |

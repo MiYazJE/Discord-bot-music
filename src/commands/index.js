@@ -9,6 +9,7 @@ const skip = require('./skip');
 const replay = require('./replay');
 const bucle = require('./bucle');
 const search = require('./search');
+const commands = require('./commands');
 
 module.exports = {
 	stop,
@@ -21,5 +22,6 @@ module.exports = {
 	skip,
 	replay,
 	bucle,
-	search
+	search,
+	commands
 };

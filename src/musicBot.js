@@ -9,7 +9,8 @@ const {
 	skip,
 	replay,
 	bucle,
-	search
+	search,
+	commands
 } = require('./commands');
 
 const INITIAL_CHANNEL = {
@@ -78,6 +79,9 @@ function musicBot(client) {
 			break;
 		case 'disconnect':
 			disconnect(msg, channels);
+			break;
+		case 'commands':
+			commands(msg);
 			break;
 		}
 	});
