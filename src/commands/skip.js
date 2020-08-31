@@ -7,6 +7,6 @@ function skip(msg, channel) {
 	if (!channel.currentSong) {
 		return msg.channel.send('⛔ **There is no songs to skip!**');
 	}
-	msg.channel.send(`**Skipping** \`${channel.currentSong.title}\``);
+	msg.channel.send(`⏭ **Skipping** \`${channel.currentSong.title}\``);
 	channel.connection.dispatcher.end();
 }

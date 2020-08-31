@@ -34,14 +34,14 @@ async function play(msg, channel, song) {
 
 	const dispatcher = channel.connection
 		.play(ytdl(song.url, { type: 'opus' }))
-		.on('finish', () => play(msg, channel, channel.queue.shift()))
+		.on('finish', () => play(msg, channel, channel.bucle ? song : channel.queue.shift()))
 		.on('error', (e) => console.log(e));
     
 	msg.channel.send(new Discord.MessageEmbed()
 		.setColor(MESSAGE_COLOR)
-		.setThumbnail(song.thumbnail)
-		.setTitle('🎵 Now Playing:')
-		.setDescription(`[${song.title}](${song.url}) \`${song.duration}\``)
-		.setFooter(`Requested by: ${song.requested}`));
+		.setTitle('▶️ Now Playing:')
+		.setDescription(`[${song.title}](${song.url})\n Duration: \`${song.duration}\``)
+		.setImage(song.thumbnail)
+		.setFooter(`Requested by: ${song.requested} | 🔄Bucle: ${channel.bucle ? 'ON' : 'OFF'}`));
 	dispatcher.setVolumeLogarithmic(channel.volume / 5);
 }

@@ -7,7 +7,9 @@ const {
 	play,
 	queue,
 	skip,
-	replay
+	replay,
+	bucle,
+	search
 } = require('./commands');
 
 const INITIAL_CHANNEL = {
@@ -16,7 +18,8 @@ const INITIAL_CHANNEL = {
 	volume: 5,
 	connection: null,
 	voiceChannel: null,
-	currentSong: null
+	currentSong: null,
+	bucle: false,
 };
 
 module.exports = musicBot;
@@ -66,6 +69,12 @@ function musicBot(client) {
 			break;
 		case 'stop':
 			stop(msg, channel);
+			break;
+		case 'bucle':
+			bucle(msg, channel);
+			break;
+		case 'search':
+			search(msg, params);
 			break;
 		case 'disconnect':
 			disconnect(msg, channels);

@@ -21,8 +21,10 @@ async function add(songName, msg, channel) {
 		new Discord.MessageEmbed()
 			.setColor(MESSAGE_COLOR)
 			.setTitle('Adding:')
-			.setThumbnail(data.thumbnail)
-			.setDescription(`[${data.title}](${data.url}) \`${data.duration}\``)
+			.setImage(data.thumbnail)
+			.setDescription(`
+				[${data.title}](${data.url}) 
+				Duration: \`${data.duration}\``)
 			.setFooter(`Requested by: ${data.requested}`)
 	);
 }

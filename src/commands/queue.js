@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { MESSAGE_COLOR } = require('./config');
+const { MESSAGE_COLOR, SPACE } = require('./config');
 
 module.exports = queue;
 
@@ -10,23 +10,30 @@ function queue(msg, channel) {
 		.setColor(MESSAGE_COLOR)
 		.setTitle('🎶 QUEUE 🎶');
         
-
 	if (channel.isPlaying) {
 		songsInfo
 			.setThumbnail(channel.currentSong.thumbnail)
 			.addFields({
-				name: '🎵 Now Playing:',
-				value: `[${channel.currentSong.title}](${channel.currentSong.url}) \`${channel.currentSong.duration}\``
+				name: SPACE,
+				value: `
+					🎵 Now Playing:
+					[${channel.currentSong.title}](${channel.currentSong.url})
+					*Duration:* \`${channel.currentSong.duration}\`
+					*Requested by:* \`${channel.currentSong.requested}\`` 
 			});
 	}
 
 	queue.forEach((song, i) => {
-		songsInfo.addFields({
-			name: `\`${i + 1}.\` Requested by: **${song.requested}**`,
-			value: `[${song.title}](${song.url}) \`${song.duration}\``,
-		});
+		songsInfo
+			.addFields({
+				name: SPACE,
+				value: `
+					**${i + 1}.** [${song.title}](${song.url}) 
+					*Duration:* \`${song.duration}\`
+					*Requested by:* \`${song.requested}\``
+			});
 	});
 
-	songsInfo.setFooter(`${queue.length} songs in queue.`);
+	songsInfo.setFooter(`${queue.length} songs in queue. | 🔄Bucle: ${channel.bucle ? 'ON' : 'OFF'}`);
 	msg.channel.send(songsInfo);
 }

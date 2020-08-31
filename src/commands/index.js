@@ -7,6 +7,8 @@ const play = require('./play').default;
 const queue = require('./queue');
 const skip = require('./skip');
 const replay = require('./replay');
+const bucle = require('./bucle');
+const search = require('./search');
 
 module.exports = {
 	stop,
@@ -17,5 +19,7 @@ module.exports = {
 	play,
 	queue,
 	skip,
-	replay
+	replay,
+	bucle,
+	search
 };
