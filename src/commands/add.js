@@ -13,7 +13,7 @@ async function add(songName, msg, channel) {
 	}
 	
 	msg.channel.send(`🔎 **Searching**:  \`${songName}\``);
-	const { data } = await axios.get(`${URL_GET_SONGS}${songName}`);
+	const { data } = await axios.get(fixedEncodeURI(`${URL_GET_SONGS}${songName}`));
 	data.requested = msg.member.user.tag;
 	channel.queue.push(data);
 
@@ -27,4 +27,8 @@ async function add(songName, msg, channel) {
 				Duration: \`${data.duration}\``)
 			.setFooter(`Requested by: ${data.requested}`)
 	);
+}
+
+function fixedEncodeURI(str) {
+	return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
 }
